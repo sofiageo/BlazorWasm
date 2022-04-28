@@ -1,0 +1,43 @@
+﻿@using BlazorWasm.Components
+
+<p>
+  Step and Tab <b>with</b> InvokeAsync. OnParametersSet runs for ever tab, that has a complex attribute. OnInitialized only runs when Step is selected.
+</p>
+<p>
+  Number is updated almost instantly.
+</p>
+<RadzenTabs>
+  <Tabs>
+    <Tab1 @bind-Application="BoundApplication" SectionId="1"/>
+    <Tab2 @bind-Application="BoundApplication" SectionId="@SectionId"/>
+  </Tabs>
+</RadzenTabs>
+
+@code {
+
+  [Parameter]
+  public int SectionId { get; set; }
+
+  [Parameter]
+  public ApplicationVM Application { get; set; }
+
+  [Parameter]
+  public EventCallback<ApplicationVM> ApplicationChanged { get; set; }
+
+  private ApplicationVM BoundApplication
+  {
+      get => Application;
+      set => ApplicationChanged.InvokeAsync(value);
+  }
+
+  protected override void OnInitialized()
+  {
+    Console.WriteLine("Group1 Initialized");
+  }
+
+  protected override void OnParametersSet()
+  {
+    Console.WriteLine("Group1 ParameterSet");
+  }
+
+}

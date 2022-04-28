@@ -1,0 +1,44 @@
+﻿@using BlazorWasm.Components
+
+<p>
+  Step <b>without</b> using InvokeAsync.
+</p>
+<p>
+  Number is updated instantly.
+</p>
+<RadzenTabs>
+  <Tabs>
+    <Tab1 @bind-Application="BoundApplication" SectionId="1"/>
+  </Tabs>
+</RadzenTabs>
+
+@code {
+  
+  [Parameter]
+  public int SectionId { get; set; }
+
+  [Parameter]
+  public ApplicationVM Application { get; set; }
+
+  [Parameter]
+  public EventCallback<ApplicationVM> ApplicationChanged { get; set; }
+
+  private ApplicationVM BoundApplication
+  {
+    get => Application;
+    set => ApplicationChanged.InvokeAsync(value);
+  }
+
+  protected override void OnInitialized()
+  {
+    Console.WriteLine("Step3 Parent Initialized");
+  // console.Log("Parameter Set");
+  }
+
+  protected override void OnParametersSet()
+  {
+    Console.WriteLine("Step3 Parent ParameterSet");
+  // console.Log("Parameter Set");
+  }
+
+}

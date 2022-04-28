@@ -1,0 +1,5 @@
+/**/bin
+/**/obj
+/**/MSBuild_Logs
+.idea
+.vscode

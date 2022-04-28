@@ -1,0 +1,52 @@
+﻿@inject StateContainer StateContainer
+@inject UserState UserState
+@using BlazorWasm.Components
+
+<RadzenTabsItem Text="Tab2">
+  <div class="d-flex flex-column">
+
+    @* <div class="d-flex gap-3"> *@
+    @*   <h3>@UserState.Application.Id</h3> *@
+    @*   <RadzenButton Text="Update Number" Click="@OnClick"/> *@
+    @*   <p>Inject UserState</p> *@
+    @* </div> *@
+
+  </div>
+</RadzenTabsItem>
+
+@code {
+
+  [Parameter]
+  public int SectionId { get; set; }
+  
+  [Parameter]
+  public ApplicationVM Application { get; set; }
+  
+  // EventConsole console;
+
+  [Parameter]
+  public EventCallback<ApplicationVM> ApplicationChanged { get; set; }
+
+  async Task OnClick()
+  {
+    var randomGenerator = new Random();
+    var t = randomGenerator.Next(1, 10000);
+    UserState.Application.Id = t;
+  // await ChangeApplication(Application);
+  }
+  
+  protected override void OnInitialized()
+  {
+  // application = Application;
+    Console.WriteLine("Tab2 Initialized");
+  // console.Log("Parameter Set");
+  }
+
+  protected override void OnParametersSet()
+  {
+    Console.WriteLine("Tab2 ParameterSet");
+  // another = Application.Another;
+  // console.Log("Parameter Set");
+  }
+
+}

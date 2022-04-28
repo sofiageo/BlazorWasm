@@ -1,0 +1,92 @@
+﻿@inject StateContainer StateContainer
+@inject UserState UserState
+@using BlazorWasm.Components
+
+<RadzenTabsItem Text="Tab1">
+  <div class="d-flex flex-column">
+    <div class="d-flex gap-3">
+      <h3>@Application.Id</h3>
+      <RadzenButton Text="Update Number" Click="@OnClick1"/>
+      <p>Bind On Parameter</p>
+    </div>
+
+    <div class="d-flex gap-3">
+      <h3>@application.Id</h3>
+      <RadzenButton Text="Update Number" Click="@OnClick2"/>
+      <p>Bind On Bound Parameter</p>
+    </div>
+
+    <div class="d-flex gap-3">
+      <h3>@StateContainer.Application.Id</h3>
+      <RadzenButton Text="Update Number" Click="@OnClick3"/>
+      <p>State Container</p>
+    </div>
+
+    <div class="d-flex gap-3">
+      <h3>@UserState.Application.Id</h3>
+      <RadzenButton Text="Update Number" Click="@OnClick4"/>
+      <p>Inject UserState</p>
+    </div>
+
+  </div>
+</RadzenTabsItem>
+
+@code {
+
+  [Parameter]
+  public int SectionId { get; set; }
+
+  [Parameter]
+  public ApplicationVM Application { get; set; }
+
+  private ApplicationVM application;
+  private Another another;
+
+  [Parameter]
+  public EventCallback<ApplicationVM> ApplicationChanged { get; set; }
+
+  async Task OnClick1()
+  {
+    var randomGenerator = new Random();
+    var t = randomGenerator.Next(1, 10000);
+    Application.Id = t;
+    // await ApplicationChanged.InvokeAsync(Application);
+  }
+
+  async Task OnClick2()
+  {
+    var randomGenerator = new Random();
+    var t = randomGenerator.Next(1, 10000);
+    application.Id = t;
+    // await ApplicationChanged.InvokeAsync(Application);
+  }
+
+  async Task OnClick3()
+  {
+    var randomGenerator = new Random();
+    var t = randomGenerator.Next(1, 10000);
+    StateContainer.Application.Id = t;
+    // await ApplicationChanged.InvokeAsync(Application);
+  }
+
+  async Task OnClick4()
+  {
+    var randomGenerator = new Random();
+    var t = randomGenerator.Next(1, 10000);
+    UserState.Application.Id = t;
+    // await ApplicationChanged.InvokeAsync(Application);
+  }
+
+  protected override void OnInitialized()
+  {
+    application = Application;
+    Console.WriteLine("Tab1 Initialized");
+  }
+
+  protected override void OnParametersSet()
+  {
+    Console.WriteLine("Tab1 ParameterSet");
+    another = Application.Another;
+  }
+
+}
