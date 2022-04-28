@@ -1,19 +1,19 @@
 ﻿@page "/parameters"
-@using BlazorWasm.Pages.Example1.Group1
-@using BlazorWasm.Pages.Example1.Group2
-@using BlazorWasm.Pages.Example1.Group3
+@using BlazorWasm.Pages.Example1.Step1
+@using BlazorWasm.Pages.Example1.Step2
+@using BlazorWasm.Pages.Example1.Step3
 @using BlazorWasm.Components
 
 <RadzenSteps>
   <Steps>
-    <RadzenStepsItem Text="Group 1">
-      <Group1 @bind-Application="_application"/>
+    <RadzenStepsItem Text="Step 1">
+      <Step1 @bind-Application="_application"/>
     </RadzenStepsItem>
-    <RadzenStepsItem Text="Group 2">
-      <Group2 @bind-Application="_application"/>
+    <RadzenStepsItem Text="Step 2">
+      <Step2 @bind-Application="_application"/>
     </RadzenStepsItem>
-    <RadzenStepsItem Text="Group 3">
-      <Group3 @bind-Application="_application"/>
+    <RadzenStepsItem Text="Step 3">
+      <Step3 @bind-Application="_application"/>
     </RadzenStepsItem>
   </Steps>
 </RadzenSteps>
