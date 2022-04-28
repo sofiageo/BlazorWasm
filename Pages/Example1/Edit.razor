@@ -2,6 +2,7 @@
 @using BlazorWasm.Pages.Example1.Step1
 @using BlazorWasm.Pages.Example1.Step2
 @using BlazorWasm.Pages.Example1.Step3
+@using BlazorWasm.Pages.Example1.Step4
 @using BlazorWasm.Components
 
 <RadzenSteps>
@@ -14,6 +15,9 @@
     </RadzenStepsItem>
     <RadzenStepsItem Text="Step 3">
       <Step3 @bind-Application="_application"/>
+    </RadzenStepsItem>
+    <RadzenStepsItem Text="Step 4">
+      <Step4 @bind-Application="_application"/>
     </RadzenStepsItem>
   </Steps>
 </RadzenSteps>

@@ -1,16 +1,21 @@
 ﻿@using BlazorWasm.Components
 
 <p>
-  Step <b>without</b> using InvokeAsync.
+  Step with Steps <b>without</b> using InvokeAsync.
 </p>
 <p>
   Number is updated instantly.
 </p>
-<RadzenTabs>
-  <Tabs>
-    <Tab1 @bind-Application="BoundApplication" SectionId="1"/>
-  </Tabs>
-</RadzenTabs>
+<RadzenSteps>
+  <Steps>
+    <RadzenStepsItem Text="Step 1">
+      <Tab1 @bind-Application="BoundApplication" SectionId="1" />
+    </RadzenStepsItem>
+    <RadzenStepsItem Text="Step 1">
+      <Tab2 @bind-Application="BoundApplication" SectionId="1" />
+    </RadzenStepsItem>
+  </Steps>
+</RadzenSteps>
 
 @code {
   
@@ -31,13 +36,13 @@
 
   protected override void OnInitialized()
   {
-    Console.WriteLine("Step3 Initialized");
+    Console.WriteLine("Step4 Initialized");
   // console.Log("Parameter Set");
   }
 
   protected override void OnParametersSet()
   {
-    Console.WriteLine("Step3 ParameterSet");
+    Console.WriteLine("Step4 ParameterSet");
   // console.Log("Parameter Set");
   }
 
